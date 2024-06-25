@@ -1,0 +1,36 @@
+
+1. To get attribute value of an element that is called by id -> document.getElementById('ID').getAttribute('attribute')
+2. To set/overwrite attribute value of an element that is called by id -> document.getElementById('ID').getAttribute('attribute', 'newvalue')
+3. TO manipulate the style of the element 
+     a. Store the element in a variable -> const Title= getElementById('Title')
+     b. Use syntax eg. Title.Style.backgroundColor = 'green';
+                       Title.Style.padding = '15px'
+                       etc......
+4. To fetch and change the content of an element
+                -> Title.textContent or Title.innerText (They both will return same value)
+                                                        (but the difference is that Title.innerText will not return the value that is hidden/display:none; but the title.textContent will return the whole text even though it is hidden)
+
+                -> On the other hand Title.innerHTML will return the content of the element along with the element used within the element. eg if a span is there inside the div then along with the  content of div it will also return the <span> tag written.
+                -> title.textContent="changed text"
+
+5. Query Selectors 
+                -> document.querySelector('h2')
+                -> document.querySelector('#Title')
+                -> document.querySelector('.Title') 
+                -> document.querySelector('input[type="Password"]')
+                -> etc..........
+        QuerySelector will select the element using tag/id/title .
+
+6. Query Selector All
+                -> document.querySelectorAll('li') -- will return all the 'li' in a node list which looks like an array but it is not
+                -> store the nodelist in a variable, eg. const myTempList = document.querySelectorAll('li')
+                -> apply tha changes. eg. myTempList[on which element].style.color= 'red'
+                                          myTempList.forEach(function (li) {}) ---> then --> myTempList.forEach(function (li) { 
+                                                                                                                li.style.color= 'red'})
+
+7. To convert html collection into an array
+                -> Array.from(HTMLCollection)
+                -> store it in a variable eg. const convertedArray = Array.from(HTMLCollection)
+                -> Now manipulate, convertedArray.forEach(function(li) {
+                                                          li.style.color = 'blue'})                                        
+
