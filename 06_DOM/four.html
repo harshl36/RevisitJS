@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur Code || DOM</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+
+<script>
+    
+    // Ways to add a list item in the list
+    function addLanguage(langName) {    // add item in ul using function
+        const langLi = document.createElement('li')    //create element and store it in a variable
+        langLi.innerHTML = `${langName}`
+        document.querySelector('.language').appendChild(langLi)    //append the element to the parent element
+    }
+addLanguage("Python")   //execute the function to store the value in the list
+addLanguage("typescript")
+// This method is ok but in this method to add something at last first it has to traverse the list
+// so it is not a good practice to do so
+
+// ---------Optimized---------//
+
+function addOptiLang(langName) {
+    const langLi =  document.createElement('li');
+    langLi.appendChild(document.createTextNode(langName))
+    document.querySelector('.language').appendChild(langLi)
+}   
+addOptiLang('golang')
+
+// Edit
+const SecondLang = document.querySelector('li:nth-child(2)')
+// SecondLang.innerHTML = "Swift"
+const newLi = document.createElement('li')   //make a new element and add
+newLi.textContent = "Swift"
+SecondLang.replaceWith(newLi)    // replace the element with the new element
+
+ //Edit more example
+ const firstLang = document.querySelector('li:first-child')
+ firstLang.outerHTML = '<li>Typescript</li>'
+
+
+//Remove element
+
+const lastLang = document.querySelector('li:last-child')
+lastLang.remove()    //remove the element from the list
+</script>
+</html>
