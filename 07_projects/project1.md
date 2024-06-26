@@ -72,4 +72,19 @@ form.addEventListener('submit', function (e) {
   }
 });
 
+
+
+```
+## project 2 - Digital Clock
+
+```Javascript
+const ShowTime = document.getElementById('clock');
+
+setInterval(function () {
+  let date = new Date();
+  // console.log(date.toLocaleTimeString());
+  ShowTime.innerHTML = date.toLocaleTimeString();
+}, 1000);
+
+
 ```
