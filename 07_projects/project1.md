@@ -187,3 +187,74 @@ function newGame() {
 }
 
 ```
+## Project 5 - KeyBoard Check
+
+
+
+```Javascript
+const insert = document.getElementById('insert');
+
+window.addEventListener('keydown', (e) => {
+  insert.innerHTML = `
+    <div class='color'>
+    <table>
+    <tr>
+      <th>Key</th>
+      <th>Keycode</th> 
+      <th>Code</th>
+    </tr>
+    <tr>
+      <td>${e.key === ' ' ? 'Space' : e.key}</td>
+      <td>${e.keyCode}</td> 
+      <td>${e.code}</td>
+    </tr>
+    
+  </table>
+    </div>
+  `;
+});
+
+
+
+```
+
+## Project 6 - Change Background Color
+
+
+
+```Javascript
+const Body = document.querySelector('body')
+const Start = document.querySelector('#start')
+const Stop = document.querySelector('#stop')
+
+//generate a random color
+const randomColor = function () {
+  const hex = '0123456789ABCDEF';
+  let color = '#';
+
+  for (let i = 0; i < 6; i++) {
+    color += hex[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
+let intervalId;
+const startChangingColor = function(){
+  if(!intervalId){
+    intervalId = setInterval(changeBGcolor, 1000)
+  }
+  function changeBGcolor (){
+    Body.style.backgroundColor = randomColor();
+  }
+};
+const StopChangingColor = function(){
+  clearInterval(intervalId);
+  intervalId = null;
+}  
+
+
+
+Start.addEventListener('click', startChangingColor)
+Stop.addEventListener('click', StopChangingColor)
+
+```
