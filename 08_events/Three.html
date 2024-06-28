@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Async</title>
+  </head>
+  <body>
+    <h1>Chai aur Javascript</h1>
+    <button id="Start">Start</button>
+    <button id="Stop">Stop</button>
+  </body>
+  <script>
+    const SayDate = (str) => {
+      console.log(str, Date.now());
+    };
+
+    let intervalId = setInterval(SayDate, 2000, "HI"); //Third parameter is also here so we can pass that value into the function without mentioning the string within the function
+                                                       // let will be used to assign variable because it has to be assigned again
+    
+    document.querySelector("#Stop").addEventListener("click", () => {
+      clearInterval(intervalId);
+      console.log("stopped");
+      intervalId = null;
+    });
+
+    document.querySelector("#Start").addEventListener("click", function () {
+      if (intervalId === null) {
+        console.log("Started Again");
+        intervalId = setInterval(SayDate, 2000, "HI");
+      }
+    });
+    
+  </script>
+</html>
