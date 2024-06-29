@@ -1,0 +1,120 @@
+<!-- XMLHTTPREQUEST - Ready state  -->
+<!-- 
+0	UNSENT	Client has been created. open() not called yet.
+1	OPENED	open() has been called.
+2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+3	LOADING	Downloading; responseText holds partial data.
+4	DONE	The operation is complete. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>API Request</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+        margin: 0;
+    }
+
+    .profile-card {
+        background: #fff;
+        width: 300px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .profile-card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+
+    .profile-card h2 {
+        margin: 10px 0;
+        font-size: 1.5em;
+        color: #333;
+    }
+
+    .profile-card p {
+        color: #777;
+        margin: 10px 0;
+    }
+
+    .profile-card .followers {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    .profile-card .followers div {
+        text-align: center;
+    }
+
+    .profile-card .followers div p {
+        margin: 5px 0;
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+<body style="background-color: #212121;">
+    <div class="profile-card">
+        <img src=""  alt="Profile Photo" id="">
+        <h2 id="name"></h2>
+        <p>Chai aur Code</p>
+        <div class="followers">
+            <div class="followers_in">
+                <p id="followers_count"></p>
+                <span>Followers</span>
+            </div>
+            <div>
+                <p id="following_count"></p>
+                <span>Following</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const followers_count =  document.getElementById('followers_count')
+    const following_count =  document.getElementById('following_count')
+    const profile_photo = document.querySelector('img')
+    const name = document.getElementById('name')
+
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+    const XHR = new XMLHttpRequest()    //Method through which data can be send and received also stores all the ready state in it
+    XHR.open('GET', requestUrl)
+    XHR.onreadystatechange =function(){
+        console.log(XHR.readyState);
+        if (XHR.readyState===4) {
+            const data = JSON.parse(this.responseText);  // convert the received string into an object so that data can be accessed
+            console.log(typeof data);
+            console.log(data.followers);
+            followers_count.textContent = data.followers;
+            following_count.textContent = data.following;
+            profile_photo.src = data.avatar_url;
+            name.textContent = data.name;
+        }
+
+    }
+    XHR.send()    //send the request to the server
+
+
+
+
+
+
+
+</script>
+
+</html>
